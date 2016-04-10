@@ -1,0 +1,15 @@
+Django
+psycopg2
+django-jenkins
+django-leaflet
+django-dbbackup
+django-allauth
+django-geojson
+django-import-export
+scrapy
+python-dateutil
+django-dynamic-scraper
+scrapy-djangoitem
+django-contrib-comments
+django-bootstrap-form
+selenium

@@ -1,0 +1,38 @@
+{% load i18n static %}
+{% extends 'safehome.site_base.html' %}
+{% load leaflet_tags %}
+{% load staticfiles %}
+
+{% block extra_head %}
+	{% leaflet_js %}
+	{% leaflet_css %}
+
+	<script type="text/javascript" src="{% static "leaflet-layer-overpass/dist/OverPassLayer.min.js" %}"></script>
+	<link rel="stylesheet" href="{% static "leaflet-layer-overpass/dist/OverPassLayer.css" %}" type="text/css" media="screen">
+
+	<style>
+
+		.leaflet-container {  /* all maps */
+			width:  600px;
+			height: 400px;
+		}
+
+		#bigmap {
+			width: 800px;
+			height: 600px;
+		}
+
+	</style>
+
+
+{{ block.super }}
+{% endblock %}
+
+{% block rtab_id %}id="schedule_tab"{% endblock %}
+
+{% block subnav %}
+	<ul>
+
+        <li><a href="">{% trans "All Calendars" %}</a></li>
+    </ul>
+{% endblock %}
