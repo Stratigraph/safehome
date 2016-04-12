@@ -145,12 +145,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    os.path.join(STATIC_ROOT, "bootstrap"),
-    os.path.join(STATIC_ROOT, "startbootstrap-sb-admin-2"),
-    os.path.join(STATIC_ROOT, "jquery"),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 
