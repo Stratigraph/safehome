@@ -1,3 +1,6 @@
 /*/*.pyc
 /staff\ list/
-/static
+/static/admin
+/static/gis
+/static/import_export
+/static/leaflet
