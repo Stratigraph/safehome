@@ -15,7 +15,7 @@ class PersonResource(resources.ModelResource):
 
 class PersonAdmin(ImportExportModelAdmin, admin.OSMGeoAdmin):
 	resource_class = PersonResource
-	list_display = ('admin_image','name', 'title','address',)
+	list_display = ('admin_image','name', 'title','address','geom')
 	search_fields = ('name',)
 	#fields = ('name','title','picture',)
 
