@@ -5,7 +5,7 @@ from tablib import Dataset
 from GDELT.loader import md5, loader
 import requests
 
-from GDELT.models import GkgCountResource, GDELTFilesResource
+from GDELT.models import GkgCountResource, GDELTFileResource
 
 class ImportTest(TestCase):
  
@@ -22,7 +22,7 @@ class ImportTest(TestCase):
 		assert(not result.has_errors())
 
 	def test_import_gdelt_file_list(self):
-		resource = GDELTFilesResource()
+		resource = GDELTFileResource()
 		dataset = Dataset().load(requests.get('http://data.gdeltproject.org/gkg/md5sums').text)
 		result = resource.import_data(dataset, dry_run=False)
 		assert(not result.has_errors())
