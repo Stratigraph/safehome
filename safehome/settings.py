@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd0dc+g^8uqi5ibx@u_bpwm#j8z!5eo(td$6uuzf&#zc_y!=kzc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -73,7 +73,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-				'django.core.context_processors.request',
+				#'django.core.context_processors.request',
                 'django.template.context_processors.request',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
