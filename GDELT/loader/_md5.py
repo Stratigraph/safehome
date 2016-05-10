@@ -19,7 +19,6 @@ title = 'md5'
 extentions = ('',)
 
 def export_set(dataset):
-    """Returns a TSV representation of Dataset."""
     stream = StringIO()
     _tsv = csv.writer(stream, delimiter=' ')
 
@@ -30,7 +29,6 @@ def export_set(dataset):
 
 
 def import_set(dset, in_stream, headers=True):
-    """Returns dataset from TSV stream."""
     dset.wipe()
 
     rows = csv.reader(in_stream.splitlines(), delimiter=' ')
@@ -39,10 +37,7 @@ def import_set(dset, in_stream, headers=True):
         if not row:
             continue
 
-        if (i == 0) and (headers):
-            dset.headers = row
-        else:
-            dset.append(row)
+        dset.append(row)
 
 
 def detect(stream):
