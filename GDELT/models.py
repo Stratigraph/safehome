@@ -301,6 +301,8 @@ class EventResource(resources.ModelResource):
 		try: 
 			return Geo.objects.get(FullName=data[actor +'Geo_FullName'])
 		except ObjectDoesNotExist:
+			if data[actor+'Geo_Lat'] is '' or data[actor+'Geo_Long'] is '':
+				return None
 			geo = Geo(Type=data[actor +'Geo_Type'], FullName=data[actor +'Geo_FullName'],
 					CountryCode=data[actor+'Geo_CountryCode'], ADM1Code=data[actor+'Geo_ADM1Code'],
 					FeatureID=data[actor+'Geo_FeatureID'], geom = Point(float(data[actor+'Geo_Long']), float(data[actor+'Geo_Lat'])))
