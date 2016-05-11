@@ -20,6 +20,7 @@ class GDELTAdmin(ImportExportModelAdmin, admin.OSMGeoAdmin):
 
 class GDELTFilesAdmin(ImportExportModelAdmin):
 	resource_class = GDELTFileResource
+	list_display = ('md5','filename',)
 	#formats = (md5,)
 
 class EventAdmin(ImportExportModelAdmin, admin.OSMGeoAdmin):

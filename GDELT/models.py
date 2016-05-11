@@ -54,8 +54,8 @@ class GkgCountResource(resources.ModelResource):
 
 
 class GDELTFile(models.Model):
-	md5 = models.CharField(max_length=256)
-	filename = models.CharField(max_length=256)
+	md5 = models.CharField(max_length=256, unique=True)
+	filename = models.CharField(max_length=256, unique=True)
 	imported = models.BooleanField(default=False)
 
 	def __unicode__(self):
@@ -67,8 +67,9 @@ class GDELTFileResource(resources.ModelResource):
 	
 	class Meta:
 		model = GDELTFile
-		skip_unchanged = False
+		skip_unchanged = True
 		report_skipped = False
+		import_id_fields = ['md5','filename']
     
 	def dehydrate_filename(self, gfile):
 		return self.baseurl + gfile.filename

@@ -25,13 +25,13 @@ from django_cron import CronJobBase, Schedule
 
 class GDELTLoader() :
 
-	def __init__(self, baseurl, requests=None):
+	def __init__(self, baseurl, request=None):
 		self.baseurl = baseurl
 		self.tmppath = '/tmp'
-		if requests is None:
+		if request is None:
 			self.requests = requests.Session()
 		else:
-			self.requests = requests
+			self.requests = request
 
 	'''
 	load of the files found in the md5 file list format
@@ -47,14 +47,15 @@ class GDELTLoader() :
 	'''
 	download all files marked as imported=False
 	'''
-	def download_files(self):
+	def download_files(self, suffix, dry_run=False):
 		files = GDELTFile.objects.filter(imported=False)
 		for file in files:
-			filename = self.extract_file(file.filename)
-			if self.load_file(filename) is True:
-				file.imported = True
-				file.save()
-			os.remove(filename)
+			if file.filename.endswith(suffix):
+				filename = self.extract_file(file.filename)
+				if self.load_file(filename, dry_run) is True:
+					file.imported = True
+					file.save()
+				os.remove(filename)
 
 
 	def extract_file(self, url):
@@ -63,10 +64,10 @@ class GDELTLoader() :
 		return os.path.join(self.tmppath, zipfile.namelist()[0])
 
 
-	def load_file(self, filename):
+	def load_file(self, filename, dry_run=False):
 		resource = EventResource()
 		dataset = Dataset().load(open(filename).read())
-		result = resource.import_data(dataset, dry_run=False)
+		result = resource.import_data(dataset, dry_run=dry_run)
 		return result.has_errors()
 		
 
@@ -78,6 +79,6 @@ class GDELTLoaderCronJob(CronJobBase):
 	code = 'safehome.GDELT_cron_job'
 	
 	def do(self):
-		loader = GDELTLoader('http://data.gdeltproject.org/events/',requests.Session())
+		loader = GDELTLoader('http://data.gdeltproject.org/events/')
 		loader.load_file_list('md5sums')
-		loader.download_files()
+		loader.download_files('.export.CSV.zip', True)

@@ -63,4 +63,4 @@ class GDELTLoaderTest(TestCase):
 	def test_file_loader_download_files(self):
 		loader = GDELTLoader('file:///code/GDELT/testdata/', self.requests)
 		loader.load_file_list('md5sums.sml')
-		loader.download_files()
+		loader.download_files('.export.CSV.zip')
