@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'dbbackup',
+    'django_cron',
     'safehome',
     'leaflet',
     'import_export',
@@ -63,6 +64,11 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CRON_CLASSES = [
+    "GDELT.loader.loader.GDELTLoaderCronJob",
+]
+
 
 ROOT_URLCONF = 'safehome.urls'
 

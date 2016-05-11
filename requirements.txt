@@ -13,3 +13,5 @@ scrapy-djangoitem
 django-contrib-comments
 django-bootstrap-form
 selenium
+requests-file
+django-cron
